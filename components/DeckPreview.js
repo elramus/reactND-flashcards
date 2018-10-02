@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 import { darkGray, middleGray } from '../utils/colors'
 
 const Container = styled.View`
   height:100;
-  flex-direction: row;
-  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
   padding: 20px;
   background-color: white;
@@ -35,7 +35,8 @@ class DeckPreview extends Component {
     navigation.navigate(
       'Deck',
       {
-        title: deck.title.split(' ').join('_')
+        key: this.props.deckKey,
+        title: deck.title
       }
     )
   }
@@ -46,7 +47,7 @@ class DeckPreview extends Component {
     return (
       <TouchableOpacity onPress={this.onDeckPress}>
         <Container>
-          <DeckTitle>{deck.title.split('_').join(' ')}</DeckTitle>
+          <DeckTitle>{deck.title}</DeckTitle>
           <DeckDetails>{deck.questions.length} cards</DeckDetails>
         </Container>
       </TouchableOpacity>
@@ -54,4 +55,10 @@ class DeckPreview extends Component {
   }
 }
 
-export default DeckPreview
+function mapStateToProps({ decks }, { deckKey }) {
+  return {
+    deck: decks[deckKey]
+  }
+}
+
+export default connect(mapStateToProps)(DeckPreview)

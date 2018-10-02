@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 import { blue } from '../utils/colors'
 import DeckPreview from './DeckPreview'
-import ButtonDashed from './ButtonDashed'
+import ButtonAdd from './ButtonAdd'
 import { Entypo } from '@expo/vector-icons'
 
 const Container = styled.View`
@@ -21,6 +21,11 @@ const MainTitle = styled.Text`
 `
 
 class DeckList extends Component {
+
+  onNewDeckPress = () => {
+    alert('new deck!')
+  }
+
   render() {
     const { decks, navigation } = this.props
 
@@ -28,11 +33,9 @@ class DeckList extends Component {
       <Container>
         <MainTitle>Mobile Flashcards</MainTitle>
         {Object.keys(decks).map(deck => (
-          <DeckPreview key={deck} deck={decks[deck]} navigation={navigation} />
+          <DeckPreview key={deck} deckKey={deck} navigation={navigation} />
         ))}
-        <TouchableOpacity>
-          <ButtonDashed><Entypo name='plus' /> New Deck</ButtonDashed>
-        </TouchableOpacity>
+        <ButtonAdd onPress={this.onNewDeckPress}>New Deck</ButtonAdd>
       </Container>
     )
   }

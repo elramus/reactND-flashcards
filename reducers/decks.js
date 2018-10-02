@@ -1,8 +1,8 @@
 import C from '../utils/constants'
 
 const initialDecks = {
-  Dog_Breeds: {
-    title: 'Dog_Breeds',
+  DogBreeds: {
+    title: 'Dog Breeds',
     questions: [
       {
         question: 'what color is the sky',
@@ -14,8 +14,8 @@ const initialDecks = {
       }
     ]
   },
-  Italian_Phrases: {
-    title: 'Italian_Phrases',
+  ItalianPhrases: {
+    title: 'Italian Phrases',
     questions: [
       {
         question: 'foo',
