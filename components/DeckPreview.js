@@ -30,15 +30,12 @@ const DeckDetails = styled.Text`
 
 class DeckPreview extends Component {
   onDeckPress = () => {
-    const { navigation, deck } = this.props
+    const { deckKey, deck, navigation } = this.props
 
-    navigation.navigate(
-      'Deck',
-      {
-        key: this.props.deckKey,
-        title: deck.title
-      }
-    )
+    navigation.navigate('Deck', {
+      deckKey,
+      title: deck.title
+    })
   }
 
   render() {
@@ -48,7 +45,7 @@ class DeckPreview extends Component {
       <TouchableOpacity onPress={this.onDeckPress}>
         <Container>
           <DeckTitle>{deck.title}</DeckTitle>
-          <DeckDetails>{deck.questions.length} cards</DeckDetails>
+          <DeckDetails>{deck.questions.length} card{deck.questions.length > 1 && 's'}</DeckDetails>
         </Container>
       </TouchableOpacity>
     )

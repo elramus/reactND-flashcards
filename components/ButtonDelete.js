@@ -8,7 +8,6 @@ const ButtonContainer = styled.View`
   align-items: center;
   margin-bottom: 20px;
   height: 65px;
-  border-radius: 5px;
 `
 const ButtonText = styled.Text`
   font-size: 21px;

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StatusBar } from 'react-native'
 import styled from 'styled-components'
 import { blue } from '../utils/colors'
 import DeckPreview from './DeckPreview'
 import ButtonAdd from './ButtonAdd'
-import { Entypo } from '@expo/vector-icons'
+import { Constants } from 'expo'
 
 const Container = styled.View`
   flex: 1;
@@ -19,19 +19,34 @@ const MainTitle = styled.Text`
   font-size: 21px;
   font-family: 'AmericanTypewriter-Bold';
 `
+const NoDeckText = styled.Text`
+  font-size: 21px;
+  color: white;
+  font-family: 'AmericanTypewriter';
+  opacity: .75;
+  margin-bottom: 50px;
+  text-align: center;
+`
 
 class DeckList extends Component {
 
   onNewDeckPress = () => {
-    alert('new deck!')
+    this.props.navigation.navigate('NewDeck')
   }
 
   render() {
     const { decks, navigation } = this.props
+    console.log(decks)
 
     return (
       <Container>
+        <View style={{ backgroundColor: blue, height: Constants.statusBarHeight }}>
+          <StatusBar translucent backgroundColor={blue} barStyle='light-content'/>
+        </View>
         <MainTitle>Mobile Flashcards</MainTitle>
+        {Object.keys(decks).length === 0 && (
+          <NoDeckText>Create a deck to get started!</NoDeckText>
+        )}
         {Object.keys(decks).map(deck => (
           <DeckPreview key={deck} deckKey={deck} navigation={navigation} />
         ))}

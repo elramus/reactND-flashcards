@@ -9,7 +9,7 @@ const ButtonContainer = styled.View`
   margin-bottom: 20px;
   padding: 20px;
   border: 1px dashed #fff;
-  border-radius: 2px;
+  border-radius: 5px;
 `
 const ButtonText = styled.Text`
   font-size: 21px;

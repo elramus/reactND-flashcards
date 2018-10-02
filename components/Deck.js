@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import React, { Component, Fragment } from 'react'
+import { View, Text, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { blue, darkGray } from '../utils/colors'
@@ -7,6 +7,7 @@ import ButtonPrimary from './ButtonPrimary'
 import ButtonAdd from './ButtonAdd'
 import ButtonDelete from './ButtonDelete'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { requestDeleteDeck } from '../actions'
 
 const Container = styled.View`
   flex: 1;
@@ -33,14 +34,27 @@ class Deck extends Component {
     }
   }
 
+  deleteDeck = () => {
+    const { dispatch, navigation, deckKey } = this.props
+
+    dispatch(requestDeleteDeck(deckKey))
+    navigation.navigate('Home')
+  }
+
   onStartQuizTap = () => {
     alert('start quiz')
   }
+
   onCardAddTap = () => {
-    alert('new card')
+    const { navigation, deckKey} = this.props
+    navigation.navigate('NewCard', { deckKey })
   }
+
   onDeleteDeckTap = () => {
-    alert('delete deck')
+    Alert.alert('Delete This Deck?', `Are you sure you want to delete ${this.props.deck.title}?`, [
+      {text: 'Yes, Delete', onPress: this.deleteDeck},
+      {text: 'Cancel'}
+    ])
   }
 
   render() {
@@ -48,13 +62,15 @@ class Deck extends Component {
 
     return (
       <Container>
-        <DeckTitle>{deck.title}</DeckTitle>
-        <CardCount>{deck.questions.length} cards</CardCount>
-        <ButtonPrimary onPress={this.onStartQuizTap}>
-          <MaterialCommunityIcons name='cards-playing-outline' size={21} color={darkGray} /> Start Quiz!
-        </ButtonPrimary>
-        <ButtonAdd onPress={this.onCardAddTap}>Add Card</ButtonAdd>
-        <ButtonDelete onPress={this.onDeleteDeckTap}>Delete Deck</ButtonDelete>
+        {deck && (
+          <Fragment>
+            <DeckTitle>{deck.title}</DeckTitle>
+            <CardCount>{deck.questions.length} cards</CardCount>
+            <ButtonPrimary onPress={this.onStartQuizTap}><MaterialCommunityIcons name='cards-playing-outline' size={21} color={darkGray} /> Start Quiz!</ButtonPrimary>
+            <ButtonAdd onPress={this.onCardAddTap}>Add Card</ButtonAdd>
+            <ButtonDelete onPress={this.onDeleteDeckTap}>Delete Deck</ButtonDelete>
+          </Fragment>
+        )}
       </Container>
     )
   }
@@ -62,7 +78,8 @@ class Deck extends Component {
 
 function mapStateToProps({ decks }, { navigation }) {
   return {
-    deck: decks[navigation.state.params.key],
+    deckKey: navigation.state.params.deckKey,
+    deck: decks[navigation.state.params.deckKey],
   }
 }
 
