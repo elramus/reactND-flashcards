@@ -1,8 +1,8 @@
 import C from '../utils/constants'
 
 const initialDecks = {
-  DeckNameHere: {
-    title: 'DeckNameHere',
+  Dog_Breeds: {
+    title: 'Dog_Breeds',
     questions: [
       {
         question: 'what color is the sky',
@@ -14,8 +14,8 @@ const initialDecks = {
       }
     ]
   },
-  AnotherDeckName: {
-    title: 'AnotherDeckName',
+  Italian_Phrases: {
+    title: 'Italian_Phrases',
     questions: [
       {
         question: 'foo',
