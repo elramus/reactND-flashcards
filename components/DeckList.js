@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, StatusBar } from 'react-native'
+import { View, Text, TouchableOpacity, StatusBar, AppLoading } from 'react-native'
 import styled from 'styled-components'
 import { blue } from '../utils/colors'
 import DeckPreview from './DeckPreview'
 import ButtonAdd from './ButtonAdd'
 import { Constants } from 'expo'
+import { requestDecks } from '../actions'
 
 const Container = styled.View`
   flex: 1;
@@ -29,14 +30,20 @@ const NoDeckText = styled.Text`
 `
 
 class DeckList extends Component {
+  state = {
+    loading: true
+  }
 
   onNewDeckPress = () => {
     this.props.navigation.navigate('NewDeck')
   }
 
+  componentDidMount() {
+    this.props.dispatch(requestDecks())
+  }
+
   render() {
     const { decks, navigation } = this.props
-    console.log(decks)
 
     return (
       <Container>

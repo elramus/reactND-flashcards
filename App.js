@@ -12,6 +12,7 @@ import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import middleware from './middleware'
+import api from './utils/api'
 
 const store = createStore(reducers, middleware)
 
@@ -71,6 +72,9 @@ export default class App extends Component {
     .then(() => {
       this.setState({ loading: false })
     })
+
+    // api.clearAllDecks()
+    // api.getDecks().then(res => console.log(res))
   }
 
   render() {

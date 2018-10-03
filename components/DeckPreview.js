@@ -45,7 +45,7 @@ class DeckPreview extends Component {
       <TouchableOpacity onPress={this.onDeckPress}>
         <Container>
           <DeckTitle>{deck.title}</DeckTitle>
-          <DeckDetails>{deck.questions.length} card{deck.questions.length > 1 && 's'}</DeckDetails>
+          <DeckDetails>{deck.questions.length} card{deck.questions.length !==  1 && 's'}</DeckDetails>
         </Container>
       </TouchableOpacity>
     )

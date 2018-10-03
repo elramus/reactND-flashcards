@@ -1,4 +1,5 @@
 import C from '../utils/constants'
+import api from '../utils/api'
 import { formatDeckFromTitle } from '../utils/helpers'
 
 /* ACTION CREATORS*/
@@ -22,30 +23,37 @@ export function deleteDeck (deckKey) {
 }
 
 /* THUNKS */
+export function requestDecks () {
+  return (dispatch) => {
+    api.getDecks()
+      .then(decks => {
+        dispatch(receiveDecks(JSON.parse(decks)))
+      })
+  }
+}
 export function requestCreateDeck (title) {
   return (dispatch) => {
-    // first format it here
+    // first format it
     const deck = formatDeckFromTitle(title)
-
-    // optimistically save in store
+    // then optimistically save in store
     dispatch(receiveDecks(deck))
-
-    // save to DB
+    // finally, save to DB
+    api.saveNewDeck(deck)
   }
 }
 export function requestCreateCard ({ deckKey, question, answer }) {
   return (dispatch) => {
     // optimistically save in the store
     dispatch(receiveCard({ deckKey, question, answer }))
-
-    // save in the db
+    // now save in the DB
+    api.addCardToDeck({ deckKey, question, answer })
   }
 }
 export function requestDeleteDeck (deckKey) {
   return (dispatch) => {
     // optimistically delete from store
     dispatch(deleteDeck(deckKey))
-
-    // delete from DB
+    // now delete from DB
+    api.deleteDeck(deckKey)
   }
 }
