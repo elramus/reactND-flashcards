@@ -17,6 +17,11 @@ const QuestionGrader = styled.View`
   flex: 1;
   justify-content: flex-end;
 `
+const NoCardsError = styled.Text`
+  color: white;
+  font-family: 'AmericanTypewriter';
+  font-size: 21px;
+`
 
 class Quiz extends Component {
   state = {
@@ -47,6 +52,16 @@ class Quiz extends Component {
   render() {
     const { qI } = this.state
     const { deck } = this.props
+
+    if (deck.questions.length === 0) {
+      return (
+        <OuterContainer>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <NoCardsError>Kinda hard to quiz you on this deck's cards when there aren't any cards, eh?</NoCardsError>
+          </View>
+        </OuterContainer>
+      )
+    }
 
     return (
       <OuterContainer>
