@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { blue, darkGray } from '../utils/colors'
+import { blue, darkGray } from '../utils/shared'
 import ButtonPrimary from './ButtonPrimary'
 import { requestCreateCard } from '../actions'
 
@@ -28,10 +28,6 @@ const Input = styled.TextInput`
 `
 
 class NewCard extends Component {
-  static navigationOptions = {
-    //
-  };
-
   state = {
     question: '',
     answer: ''
@@ -57,6 +53,7 @@ class NewCard extends Component {
         <Input
           onChangeText={(text) => this.setState({question: text})}
           value={question}
+          autoFocus={true}
         />
         <InputLabel>Answer</InputLabel>
         <Input

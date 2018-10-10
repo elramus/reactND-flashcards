@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
-import { darkGray } from '../utils/colors'
+import { darkGray } from '../utils/shared'
 
 const ButtonContainer = styled.View`
   justify-content: center;

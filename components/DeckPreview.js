@@ -2,20 +2,15 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { darkGray, middleGray } from '../utils/colors'
+import { darkGray, middleGray } from '../utils/shared'
+import { boxShadow } from '../utils/shared'
 
 const Container = styled.View`
   height:100;
   justify-content: center;
   margin-bottom: 20px;
   padding: 20px;
-  background-color: white;
-  border-radius: 2px;
-  shadow-color: black;
-  shadow-offset: 0 2px;
-  shadow-radius: 2;
-  shadow-opacity: .25;
-  elevation: 4;
+  ${boxShadow}
 `
 const DeckTitle = styled.Text`
   font-family: 'AmericanTypewriter';

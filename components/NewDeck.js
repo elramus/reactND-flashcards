@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { blue, darkGray } from '../utils/colors'
+import { blue, darkGray } from '../utils/shared'
 import ButtonPrimary from './ButtonPrimary'
 import { Entypo } from '@expo/vector-icons'
 import { requestCreateDeck } from '../actions'
@@ -55,6 +55,7 @@ class NewDeck extends Component {
         <DeckNameInput
           onChangeText={(text) => this.setState({deckNameInput: text})}
           value={this.state.deckNameInput}
+          autoFocus={true}
         />
         <ButtonPrimary onPress={this.onCreateDeckTap}>Create Deck</ButtonPrimary>
       </Container>

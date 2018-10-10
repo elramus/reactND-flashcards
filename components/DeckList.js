@@ -2,17 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, StatusBar, AppLoading } from 'react-native'
 import styled from 'styled-components'
-import { blue } from '../utils/colors'
+import { blue, OuterContainer } from '../utils/shared'
 import DeckPreview from './DeckPreview'
 import ButtonAdd from './ButtonAdd'
 import { Constants } from 'expo'
 import { requestDecks } from '../actions'
 
-const Container = styled.View`
-  flex: 1;
-  background-color: ${blue};
-  padding: 20px;
-`
 const MainTitle = styled.Text`
   margin-bottom: 30px;
   text-align: center;
@@ -46,7 +41,7 @@ class DeckList extends Component {
     const { decks, navigation } = this.props
 
     return (
-      <Container>
+      <OuterContainer>
         <View style={{ backgroundColor: blue, height: Constants.statusBarHeight }}>
           <StatusBar translucent backgroundColor={blue} barStyle='light-content'/>
         </View>
@@ -58,7 +53,7 @@ class DeckList extends Component {
           <DeckPreview key={deck} deckKey={deck} navigation={navigation} />
         ))}
         <ButtonAdd onPress={this.onNewDeckPress}>New Deck</ButtonAdd>
-      </Container>
+      </OuterContainer>
     )
   }
 }

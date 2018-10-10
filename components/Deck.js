@@ -2,18 +2,13 @@ import React, { Component, Fragment } from 'react'
 import { View, Text, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { blue, darkGray } from '../utils/colors'
+import { darkGray, OuterContainer } from '../utils/shared'
 import ButtonPrimary from './ButtonPrimary'
 import ButtonAdd from './ButtonAdd'
 import ButtonDelete from './ButtonDelete'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { requestDeleteDeck } from '../actions'
 
-const Container = styled.View`
-  flex: 1;
-  padding: 20px;
-  background-color: ${blue}
-`
 const DeckTitle = styled.Text`
   font-size: 32px;
   font-family: 'AmericanTypewriter';
@@ -36,13 +31,13 @@ class Deck extends Component {
 
   deleteDeck = () => {
     const { dispatch, navigation, deckKey } = this.props
-
     dispatch(requestDeleteDeck(deckKey))
     navigation.navigate('Home')
   }
 
   onStartQuizTap = () => {
-    alert('start quiz')
+    const { deck, navigation, deckKey} = this.props
+    navigation.navigate('Quiz', { deckKey })
   }
 
   onCardAddTap = () => {
@@ -61,7 +56,7 @@ class Deck extends Component {
     const { deck } = this.props
 
     return (
-      <Container>
+      <OuterContainer>
         {deck && (
           <Fragment>
             <DeckTitle>{deck.title}</DeckTitle>
@@ -71,7 +66,7 @@ class Deck extends Component {
             <ButtonDelete onPress={this.onDeleteDeckTap}>Delete Deck</ButtonDelete>
           </Fragment>
         )}
-      </Container>
+      </OuterContainer>
     )
   }
 }

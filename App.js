@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore } from 'redux'
+import middleware from './middleware'
 import { Provider } from 'react-redux'
 import { createStackNavigator } from 'react-navigation'
 import reducers from './reducers'
 import styled from 'styled-components'
-import { blue } from './utils/colors'
+import { blue } from './utils/shared'
 import { Font, AppLoading } from 'expo'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
-import middleware from './middleware'
-import api from './utils/api'
+import Quiz from './components/Quiz'
+import QuizResults from './components/QuizResults'
 
 const store = createStore(reducers, middleware)
 
@@ -35,6 +36,9 @@ const defaultNavigationOptions = {
   },
   headerTitleStyle: {
     fontFamily: 'AmericanTypewriter',
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'AmericanTypewriter'
   }
 }
 
@@ -56,6 +60,16 @@ const MainNavigator = createStackNavigator({
   NewCard: {
     screen: NewCard,
     navigationOptions: defaultNavigationOptions
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: defaultNavigationOptions
+  },
+  QuizResults: {
+    screen: QuizResults,
+    navigationOptions: {
+      header:null
+    }
   }
 })
 
@@ -72,9 +86,6 @@ export default class App extends Component {
     .then(() => {
       this.setState({ loading: false })
     })
-
-    // api.clearAllDecks()
-    // api.getDecks().then(res => console.log(res))
   }
 
   render() {
