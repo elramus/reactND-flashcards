@@ -14,6 +14,7 @@ import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import Quiz from './components/Quiz'
 import QuizResults from './components/QuizResults'
+import { setLocalNotification } from './utils/helpers'
 
 const store = createStore(reducers, middleware)
 
@@ -86,6 +87,7 @@ export default class App extends Component {
     .then(() => {
       this.setState({ loading: false })
     })
+    setLocalNotification()
   }
 
   render() {
