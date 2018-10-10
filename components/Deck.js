@@ -61,7 +61,7 @@ class Deck extends Component {
           <Fragment>
             <DeckTitle>{deck.title}</DeckTitle>
             <CardCount>{deck.questions.length} cards</CardCount>
-            <ButtonPrimary onPress={this.onStartQuizTap}><MaterialCommunityIcons name='cards-playing-outline' size={21} color={darkGray} /> Start Quiz!</ButtonPrimary>
+            <ButtonPrimary onPress={this.onStartQuizTap}><MaterialCommunityIcons name='cards' size={21} color={darkGray} /> Start Quiz!</ButtonPrimary>
             <ButtonAdd onPress={this.onCardAddTap}>Add Card</ButtonAdd>
             <ButtonDelete onPress={this.onDeleteDeckTap}>Delete Deck</ButtonDelete>
           </Fragment>
