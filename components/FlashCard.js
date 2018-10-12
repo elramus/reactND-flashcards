@@ -8,7 +8,7 @@ const Card = styled.View`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  height: 250px;
+  height: 175px;
   margin-bottom: 10px;
   ${boxShadow}
 `
@@ -79,4 +79,3 @@ class FlashCard extends Component {
 }
 
 export default FlashCard
-

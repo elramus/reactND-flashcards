@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { OuterContainer } from '../utils/shared'
+import { blue } from '../utils/shared'
 import ButtonPrimary from './ButtonPrimary'
 import FlashCard from './FlashCard'
 import { FontAwesome } from '@expo/vector-icons'
@@ -16,11 +16,17 @@ const LabelText = styled.Text`
 const QuestionGrader = styled.View`
   flex: 1;
   justify-content: flex-end;
+  margin-top: 20px;
 `
 const NoCardsError = styled.Text`
   color: white;
   font-family: 'AmericanTypewriter';
   font-size: 21px;
+`
+const QuizContainer = styled.ScrollView`
+  flex: 1;
+  padding: 20px;
+  background-color: ${blue};
 `
 
 class Quiz extends Component {
@@ -64,7 +70,7 @@ class Quiz extends Component {
     }
 
     return (
-      <OuterContainer>
+      <QuizContainer>
         <LabelText>Question {qI + 1} of {deck.questions.length}</LabelText>
         <FlashCard
           question={deck.questions[qI].question}
@@ -75,7 +81,7 @@ class Quiz extends Component {
           <ButtonPrimary onPress={() => this.onGrade(true)}><FontAwesome name='check' size={21} /> Correct</ButtonPrimary>
           <ButtonPrimary onPress={() => this.onGrade(false)}><FontAwesome name='times' size={21} /> Incorrect</ButtonPrimary>
         </QuestionGrader>
-      </OuterContainer>
+      </QuizContainer>
     )
   }
 }
