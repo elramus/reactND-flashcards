@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { blue, darkGray } from '../utils/shared'
 import ButtonPrimary from './ButtonPrimary'
-import { Entypo } from '@expo/vector-icons'
 import { requestCreateDeck } from '../actions'
 
 const Container = styled.View`

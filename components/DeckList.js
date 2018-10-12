@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, StatusBar, AppLoading } from 'react-native'
+import { View, Text, TouchableOpacity, StatusBar } from 'react-native'
 import styled from 'styled-components'
 import { blue, OuterContainer } from '../utils/shared'
 import DeckPreview from './DeckPreview'
@@ -25,10 +25,6 @@ const NoDeckText = styled.Text`
 `
 
 class DeckList extends Component {
-  state = {
-    loading: true
-  }
-
   onNewDeckPress = () => {
     this.props.navigation.navigate('NewDeck')
   }

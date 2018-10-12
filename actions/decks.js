@@ -2,7 +2,7 @@ import C from '../utils/constants'
 import api from '../utils/api'
 import { formatDeckFromTitle } from '../utils/helpers'
 
-/* ACTION CREATORS*/
+/* ACTION CREATORS */
 export function receiveDecks (decks) {
   return {
     type: C.RECEIVE_DECKS,
@@ -43,7 +43,7 @@ export function requestCreateDeck (title) {
 }
 export function requestCreateCard ({ deckKey, question, answer }) {
   return (dispatch) => {
-    // optimistically save in the store
+    // optimistically save in store
     dispatch(receiveCard({ deckKey, question, answer }))
     // now save in the DB
     api.addCardToDeck({ deckKey, question, answer })

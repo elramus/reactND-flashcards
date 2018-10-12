@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { darkGray, middleGray } from '../utils/shared'
-import { boxShadow } from '../utils/shared'
+import { darkGray, middleGray, boxShadow } from '../utils/shared'
 
 const Container = styled.View`
   height:100;

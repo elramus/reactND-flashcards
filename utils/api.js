@@ -3,6 +3,7 @@ import { AsyncStorage } from 'react-native'
 const STORAGE_KEY = 'MobileFlashcards:storage'
 
 const api = {
+
   getDecks: () => {
     return AsyncStorage.getItem(STORAGE_KEY)
       .then(res => {
@@ -17,7 +18,7 @@ const api = {
           ...JSON.parse(prevState),
           ...deck
         }
-        return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
+        AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
       })
   },
 
@@ -38,7 +39,7 @@ const api = {
             ]
           }
         }
-        return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
+        AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
       })
   },
 
@@ -47,13 +48,14 @@ const api = {
       .then(prevState => {
         const newState = { ...JSON.parse(prevState) }
         delete newState[deckKey]
-        return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
+        AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
       })
   },
 
   clearAllDecks: () => {
     return AsyncStorage.removeItem(STORAGE_KEY)
   }
+
 }
 
 export default api

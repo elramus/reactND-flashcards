@@ -37,7 +37,7 @@ class NewCard extends Component {
     const { question, answer } = this.state
     const { dispatch, navigation, deckKey } = this.props
 
-    // create new deck
+    // create new card
     dispatch(requestCreateCard({ deckKey, question, answer }))
 
     // navigate back to the current deck
