@@ -87,6 +87,7 @@ export default class App extends Component {
     .then(() => {
       this.setState({ loading: false })
     })
+    // Clears current notifications and resets them to start again tomorrow.
     setLocalNotification()
   }
 

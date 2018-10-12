@@ -7,7 +7,7 @@ const api = {
   getDecks: () => {
     return AsyncStorage.getItem(STORAGE_KEY)
       .then(res => {
-        return res
+        return JSON.parse(res)
       })
   },
 
@@ -54,7 +54,7 @@ const api = {
 
   clearAllDecks: () => {
     return AsyncStorage.removeItem(STORAGE_KEY)
-  }
+  },
 
 }
 

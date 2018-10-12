@@ -27,7 +27,7 @@ export function requestDecks () {
   return (dispatch) => {
     api.getDecks()
       .then(decks => {
-        dispatch(receiveDecks(JSON.parse(decks)))
+        dispatch(receiveDecks(decks))
       })
   }
 }
