@@ -6,3 +6,6 @@ This app is a practice project for [React Native](https://github.com/facebook/re
 Download this repo or just ```git clone https://github.com/elramus/reactND-flashcards.git```, then ```cd``` into it and run ```npm install```.
 
 When that is finished, run ```npm start``` and you should be good!
+
+## Platforms
+Designed for and tested on Android and iOS devices.
